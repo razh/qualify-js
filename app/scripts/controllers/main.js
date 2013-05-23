@@ -14,7 +14,6 @@ angular.module( 'qualifyJsApp' )
       'eclipse',
       'github',
       'idle_fingers',
-      'kr_theme',
       'merbivore',
       'merbivore_soft',
       'mono_industrial',
@@ -35,7 +34,7 @@ angular.module( 'qualifyJsApp' )
 
     $scope.currentTheme = 'monokai';
 
-    $scope.$watch( 'code', function() {
+    $scope.logCode = function() {
       console.log( $scope.code );
-    });
+    };
   }]);
