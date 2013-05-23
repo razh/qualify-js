@@ -7,4 +7,8 @@ angular.module( 'qualifyJsApp' )
       'AngularJS',
       'Karma'
     ];
+
+    $scope.$watch( 'code', function() {
+      console.log( $scope.code );
+    });
   }]);
