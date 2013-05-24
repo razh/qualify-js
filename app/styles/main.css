@@ -7,4 +7,10 @@
 
 .ace_editor_wrapper {
   position: relative;
-  height: 200px; }
+  margin-left: 300px;
+  width: 400px;
+  height: 100%; }
+
+.options-panel {
+  float: left;
+  padding: 20px; }

@@ -26,14 +26,21 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view></div>
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="navbar-inner">
+        <div class="brand">Console</div></div>
+    </div>
+    <div ng-view></div>
+    <div ng-include src=" 'views/contents.html' "></div>
 
     <script src="components/angular/angular.js"></script>
 
     <!-- build:js scripts/scripts.js -->
     <script src="components/ace-builds/src-min-noconflict/ace.js"></script>
     <script src="components/angular-ui-ace/ui-ace.js"></script>
+    <script src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/contents.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/directives/editor.js"></script>
     <!-- endbuild -->

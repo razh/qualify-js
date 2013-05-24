@@ -34,7 +34,26 @@ angular.module( 'qualifyJsApp' )
 
     $scope.currentTheme = 'monokai';
 
+    $scope.code =
+      '(function() {\n' +
+      '  // Those won\'t be seen by the test suite.\n' +
+      '  var privateProperty = null;\n' +
+      '  function privateMethod() { /* ... */ }\n' +
+      '  return {\n' +
+      '    // Everything to be tested.\n' +
+      '    publicProperty: null,\n' +
+      '    publicMethod: function() {\n' +
+      '      // Private properties and methods are accessible here.\n' +
+      '      console.log( privateProperty );\n' +
+      '    }\n' +
+      '  };\n' +
+      '}) ();';
+
     $scope.logCode = function() {
       console.log( $scope.code );
+    };
+
+    $scope.evalCode = function() {
+      console.log( Object.keys( eval( $scope.code ) ) );
     };
   }]);

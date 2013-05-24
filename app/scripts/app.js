@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module( 'qualifyJsApp', [ 'ui.ace' ] )
+angular.module( 'qualifyJsApp', [ 'ui.ace', 'ui.bootstrap' ] )
   .config( [ '$routeProvider', function( $routeProvider ) {
     $routeProvider
       .when( '/', {

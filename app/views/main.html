@@ -1,9 +1,11 @@
-<div class="hero-unit">
-  <p>Themes</p>
-  <select ng-model="currentTheme" ng-options="theme for theme in themes"></select>
-
-  <div editor ui-ace="{
-    mode: 'javascript'
-  }" scope-instance="editor" ng-model="code"></div>
-  <button ng-click="logCode()">Log code</button>
+<div editor ui-ace="{
+  mode: 'javascript'
+}" scope-instance="editor" ng-model="code"></div>
+<div class="options-panel">
+  <div class="themes-panel">
+    <p>Themes</p>
+    <select ng-model="currentTheme" ng-options="theme for theme in themes"></select>
+  </div>
+  <button class="btn" ng-click="logCode()">Log code</button>
+  <button class="btn" ng-click="evalCode()">Eval code</button>
 </div>
