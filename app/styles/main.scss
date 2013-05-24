@@ -8,7 +8,7 @@
 
 .ace_editor_wrapper {
   position: relative;
-  margin-left: 300px;
+  margin-left: 270px;
   width: 400px;
   height: 100%;
 }
@@ -16,4 +16,9 @@
 .options-panel {
   float: left;
   padding: 20px;
+}
+
+.contents {
+  float: left;
+  list-style-type: square;
 }

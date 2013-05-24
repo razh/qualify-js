@@ -10,19 +10,19 @@ angular.module( 'qualifyJsApp' )
         setTimeout(function() {
           scope.editor.getSession().setTabSize(2);
           scope.editor.getSession().setUseSoftTabs( true );
-        }, 16);
+          fitToWindow();
+        }, 16 );
 
         scope.$watch( 'currentTheme', function( newValue, oldValue ) {
           scope.editor.setTheme( 'ace/theme/' + newValue );
         });
 
         function fitToWindow() {
-          element.css( 'width', $window.innerWidth - 20 - 20 - 20 + 'px' );
+          // Subtract options panel width and padding.
+          element.css( 'width', $window.innerWidth - 270 + 'px' );
           // Subtract navbar.
           element.css( 'height', $window.innerHeight - 40 + 'px' );
         }
-
-        fitToWindow();
 
         angular.element( $window ).bind( 'resize', function() {
           fitToWindow();

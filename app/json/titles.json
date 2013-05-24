@@ -1,0 +1,34 @@
+[
+  {
+    "category": "Beginner",
+    "sections": [
+      {
+        "name": "Test 1",
+        "description": "Return a list of stuff."
+      },
+      {
+        "name": "Test 2",
+        "description": "This is the second description."
+      }
+    ]
+  },
+  {
+    "category": "Intermediate",
+    "sections": [
+      {
+        "name": "Test 3",
+        "description": "Nested in here."
+      }
+    ]
+  },
+  {
+    "category": "Functional programming",
+    "sections": [
+    ]
+  },
+  {
+    "category": "jQuery",
+    "sections": [
+    ]
+  }
+]

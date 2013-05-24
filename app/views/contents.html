@@ -1,0 +1,10 @@
+<div ng-controller="ContentsCtrl">
+  <ul class="contents" ng-hide="cannotLoad">
+    <li ng-repeat="section in sections">{{ section.category }}
+      <ul>
+        <li ng-repeat="title in section.sections">{{ title.name }}</li>
+      </ul>
+    </li>
+  </ul>
+  <div ng-show="error">Error: {{ errorMessage }}</div>
+</div>
