@@ -43,7 +43,7 @@ angular.module( 'qualifyJsApp' )
       '    // Everything to be tested.\n' +
       '    publicProperty: null,\n' +
       '    publicMethod: function() {\n' +
-      '      // Private properties and methods are accessible here.\n' +
+      '      // Private properties and methods can be accessed from here.\n' +
       '      console.log( privateProperty );\n' +
       '    }\n' +
       '  };\n' +
@@ -55,5 +55,24 @@ angular.module( 'qualifyJsApp' )
 
     $scope.evalCode = function() {
       console.log( Object.keys( eval( $scope.code ) ) );
+    };
+
+    $scope.testCode = function() {
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.updateInterval = 1000;
+
+      var trivialReporter = new jasmine.TrivialReporter();
+
+      jasmineEnv.addReporter(trivialReporter);
+
+      jasmineEnv.specFilter = function(spec) {
+        return trivialReporter.specFilter(spec);
+      };
+
+      function execJasmine() {
+        jasmineEnv.execute();
+      }
+
+      execJasmine();
     };
   }]);
