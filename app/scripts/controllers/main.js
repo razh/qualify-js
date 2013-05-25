@@ -61,18 +61,20 @@ angular.module( 'qualifyJsApp' )
       var jasmineEnv = jasmine.getEnv();
       jasmineEnv.updateInterval = 1000;
 
-      var trivialReporter = new jasmine.TrivialReporter();
+      var htmlReporter = new jasmine.HtmlReporter();
 
-      jasmineEnv.addReporter(trivialReporter);
+      jasmineEnv.addReporter( htmlReporter );
 
-      jasmineEnv.specFilter = function(spec) {
-        return trivialReporter.specFilter(spec);
+      jasmineEnv.specFilter = function( spec ) {
+        return htmlReporter.specFilter( spec );
       };
 
-      function execJasmine() {
-        jasmineEnv.execute();
-      }
+      describe( 'Test', function() {
+        it( 'should add two numbers correctly', function() {
+          expect( 2 + 2 ).toBe(4);
+        });
+      });
 
-      execJasmine();
+      jasmineEnv.execute();
     };
   }]);
