@@ -36,11 +36,11 @@ angular.module( 'qualifyJsApp' )
 
     $scope.code =
       '(function() {\n' +
-      '  // Those won\'t be seen by the test suite.\n' +
+      '  // These won\'t be seen by the test suite.\n' +
       '  var privateProperty = null;\n' +
       '  function privateMethod() { /* ... */ }\n' +
       '  return {\n' +
-      '    // Everything to be tested.\n' +
+      '    // But it can see these.\n' +
       '    publicProperty: null,\n' +
       '    publicMethod: function() {\n' +
       '      // Private properties and methods can be accessed from here.\n' +
