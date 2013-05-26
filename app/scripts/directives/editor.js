@@ -5,7 +5,6 @@ angular.module( 'qualifyJsApp' )
     return {
       restrict: 'A',
       link: function postLink( scope, element, attrs ) {
-
         // Configure editor.
         setTimeout(function() {
           scope.editor.getSession().setTabSize(2);
