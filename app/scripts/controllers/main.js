@@ -57,23 +57,20 @@ angular.module( 'qualifyJsApp' )
       console.log( Object.keys( eval( $scope.code ) ) );
     };
 
+
+    var reporter = new jasmine.SimpleReporter();
+
     // Test definition code.
     var jasmineEnv = jasmine.getEnv();
     jasmineEnv.updateInterval = 1000;
-
-    var htmlReporter = new jasmine.HtmlReporter();
-
-    jasmineEnv.addReporter( htmlReporter );
-
-    jasmineEnv.specFilter = function( spec ) {
-      return htmlReporter.specFilter( spec );
-    };
 
     describe( 'Test', function() {
       it( 'should add two numbers correctly', function() {
         expect( 2 + 2 ).toBe(4);
       });
     });
+
+    $scope.suites = [{specs: [{name: 'hello'}]}, {specs: [{name: 'goodbye'}]}];
 
     $scope.testCode = function() {
       jasmineEnv.execute();
