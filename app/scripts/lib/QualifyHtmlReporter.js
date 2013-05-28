@@ -20,7 +20,34 @@
   // Abstract class for QualifyHtmlReporter view.
   jasmine.QualifyHtmlReporter.View = function() {};
 
-  jasmine.QualifyHtmlReporter.View.prototype.createDOM = function() {};
+  jasmine.QualifyHtmlReporter.View.prototype.createDOM = function( type, attrs, childrenVarArgs ) {
+    var el = document.createElement( type );
+
+    var i, child;
+    // Create text nodes with child elements.
+    for ( i = 2; i < arguments.length; i++ ) {
+      child = arguments[i];
+
+      if ( typeof child === 'string' ) {
+        el.appendChild( document.createTextNode( child ) );
+      } else {
+        if ( child ) {
+          el.appendChild( child );
+        }
+      }
+    }
+
+    // Add attributes.
+    for ( var attr in attrs ) {
+      if ( attr === 'className' ) {
+        el[ attr ] = attrs[ attr ];
+      } else {
+        el.setAttribute( attr, attrs[ attr ] );
+      }
+    }
+
+    return el;
+  };
 
   jasmine.QualifyHtmlReporter.View.prototype.append = function( child, childElement ) {
     var parent = child[ parentSuite ];
@@ -53,6 +80,8 @@
         this.views.specs[ spec.id ] = new jasmine.QualifyHtmlReporter.SpecView( spec, this.views );
       });
     };
+
+    this.createResultsMenu = function() {};
 
     return this;
   };
