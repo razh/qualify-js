@@ -129,6 +129,10 @@ angular.module( 'qualifyJsApp' )
       {
         'type': 'error',
         'message': 'try harder next time'
+      },
+      {
+        'type': 'success',
+        'message': 'work it do it makes it better'
       }
     ];
 
