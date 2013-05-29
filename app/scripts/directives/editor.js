@@ -7,8 +7,11 @@ angular.module( 'qualifyJsApp' )
       link: function postLink( scope, element, attrs ) {
         // Configure editor.
         setTimeout(function() {
-          scope.editor.getSession().setTabSize(2);
-          scope.editor.getSession().setUseSoftTabs( true );
+          var editor = scope.editor.getSession();
+
+          editor.setTabSize(2);
+          editor.setUseSoftTabs( true );
+
           fitToWindow();
         }, 16 );
 

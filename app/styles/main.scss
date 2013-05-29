@@ -1,4 +1,6 @@
 /* Will be compiled down to a single stylesheet with your sass files */
+$spacing: 20px;
+
 .ace_editor {
   top: 0;
   bottom: 0;
@@ -15,7 +17,7 @@
 
 .options-panel {
   float: left;
-  padding: 20px;
+  padding: $spacing;
 }
 
 .contents {
@@ -36,4 +38,12 @@
     content: "Jasmine";
     font-weight: bold;
   }
+}
+
+.alerts {
+  position: absolute;
+  z-index: 4;
+  bottom: $spacing;
+  right: $spacing;
+  width: 50%;
 }

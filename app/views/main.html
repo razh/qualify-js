@@ -8,7 +8,8 @@
   </div>
   <button class="btn" ng-click="logCode()">Log</button>
   <button class="btn" ng-click="evalCode()">Eval</button>
-  <button class="btn" ng-click="testCode()">Test</button>
+  <button class="btn" ng-click="testCode()" ng-disabled="testingDisabled">Test</button>
   <div ng-include src=" 'views/contents.html' "></div>
   <div ng-include src=" 'views/jasmine.html' "></div>
+  <div ng-include src=" 'views/alerts.html' "></div>
 </div>

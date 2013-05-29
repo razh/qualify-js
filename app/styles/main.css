@@ -28,3 +28,10 @@
   .jasmine:before {
     content: "Jasmine";
     font-weight: bold; }
+
+.alerts {
+  position: absolute;
+  z-index: 4;
+  bottom: 20px;
+  right: 20px;
+  width: 50%; }

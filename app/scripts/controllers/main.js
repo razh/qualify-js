@@ -73,7 +73,7 @@ angular.module( 'qualifyJsApp' )
 
     var number = 2;
     var nullObject = null;
-    var firstSuite = 'describe( \'Test\', function() {' +
+    var suites = [ 'describe( \'Test\', function() {' +
       'it( \'should add two numbers correctly\', function() {' +
         'console.log(\'first\');' +
         'expect( number + number ).toBe( 2 * number );' +
@@ -82,48 +82,59 @@ angular.module( 'qualifyJsApp' )
         'console.log(\'second\');' +
         'expect( nullObject ).toBeNull();' +
       '});' +
-    '});';
+    '});',
 
-    var secondSuite = 'describe( \'Test2\', function() {' +
+    'describe( \'Test2\', function() {' +
       'it( \'should do something\', function() {' +
         'console.log(\'third\');' +
         'expect( \'test\' ).toBe( \'test\' );' +
       '});' +
-    '});';
+    '});',
+
+    'describe( \'Test3\', function() {' +
+      'it( \'should make sense\', function() {' +
+        'expect( null ).toBe( null );' +
+      '});' +
+    '});' ];
 
     function resetJasmineRunner( runner ) {
-      runner.queue.blocks = [];
-      runner.queue.ensured = [];
+      // We need to handle garbage collection.
+      // It appears to have been improved in Jasmine 2.0.
       runner.queue.index = 0;
-
       runner.suites_ = [];
     }
 
     var index = 0;
+    $scope.testingDisabled = false;
+
     $scope.testCode = function() {
-      console.log( '\n%cRun:', 'font-weight: bold;' );
+      $scope.testingDisabled = true;
       resetJasmineRunner( jasmineEnv.currentRunner() );
-      var suites = jasmineEnv.currentRunner().suites();
-      console.log( jasmineEnv.currentRunner() );
 
-      console.log( 'suites:' );
-      console.log( suites );
-
-      console.log( ( ( index % 2 ) === 0 ) ? firstSuite : secondSuite );
-      eval( ( ( index % 2 ) === 0 ) ? firstSuite : secondSuite );
-      console.log( '%cindex: ' + index, 'font-weight: bold;' );
+      eval( suites[ index % suites.length ] );
       index++;
-
-      console.log( jasmineEnv.currentRunner().suites() );
-
-      console.log( '%cPost:', 'font-weight: bold;' );
-      console.log( jasmineEnv.currentRunner() );
 
       jasmineEnv.execute();
 
       setTimeout(function() {
         number++;
         nullObject = {};
-      }, jasmine.updateInterval );
+
+        $scope.testingDisabled = false;
+        $scope.$apply();
+      }, jasmineEnv.updateInterval );
     };
+
+    $scope.alerts = [
+      {
+        'type': 'error',
+        'message': 'try harder next time'
+      }
+    ];
+
+    $scope.closeAlert = function( $index ) {
+      $scope.alerts.splice( $index, 1 );
+    };
+
+    $scope.showingAlerts = true;
   }]);

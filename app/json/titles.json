@@ -4,7 +4,14 @@
     "sections": [
       {
         "name": "Test 1",
-        "description": "Return a list of stuff."
+        "description": "Return a list of stuff.",
+        "suite": {
+          "before": "describe( 'Test', function() {",
+          "after": "});",
+          "children": [
+            "it( 'should be doing something', function() { expect( 'test' ).toBe( 'test' ); });"
+          ]
+        }
       },
       {
         "name": "Test 2",
