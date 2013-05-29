@@ -1,10 +1,12 @@
 <div ng-controller="ContentsCtrl">
-  <ul class="contents" ng-hide="cannotLoad">
+  <!-- <ul class="contents" ng-hide="cannotLoad">
     <li ng-repeat="section in sections">{{ section.category }}
       <ul>
         <li ng-repeat="title in section.sections">{{ title.name }}</li>
       </ul>
     </li>
-  </ul>
+  </ul> -->
+  <select class="contents" ng-hide="cannotLoad" ng-model="currentSection" ng-options="section.category for section in sections">
+  </select>
   <div ng-show="error">Error: {{ errorMessage }}</div>
 </div>
