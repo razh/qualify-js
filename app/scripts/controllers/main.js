@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module( 'qualifyJsApp' )
-  .controller( 'MainCtrl', [ '$scope', function( $scope ) {
+  .controller( 'MainCtrl', [ '$scope', '$document', function( $scope, $document ) {
     $scope.themes = [
       'ambiance',
       'chrome',
@@ -61,7 +61,7 @@ angular.module( 'qualifyJsApp' )
     var reporter = new jasmine.SimpleReporter();
     reporter.onRunnerFinished(function( output ) {
       $scope.output = output;
-      $scope.$apply();
+      $scope.alerts = $scope.alerts.concat( output );
     });
 
     var jasmineEnv = jasmine.getEnv();
@@ -135,6 +135,21 @@ angular.module( 'qualifyJsApp' )
         'message': 'work it do it makes it better'
       }
     ];
+
+    $document.bind( 'keyup', function( event ) {
+      // Escape.
+      if ( event.which === 27 ) {
+        $scope.alerts = [];
+        $scope.$apply();
+      }
+    });
+
+    $document.bind( 'keypress', function( event ) {
+      if ( event.which === 13  && event.ctrlKey ) {
+        event.preventDefault();
+        console.log( 'Ctrl+Enter' );
+      }
+    });
 
     $scope.closeAlert = function( $index ) {
       $scope.alerts.splice( $index, 1 );

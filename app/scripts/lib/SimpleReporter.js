@@ -30,7 +30,10 @@ jasmine.SimpleReporter.prototype.reportSpecStarting = function( spec ) {};
 jasmine.SimpleReporter.prototype.reportSpecResults = function( spec ) {
   var result = spec.results();
 
-  this.output.push( spec.description + ': ' + ( result.passed() ? 'passed': 'failed' ) );
+  this.output.push({
+    type: result.passed() ? 'success' : 'error',
+    message: spec.description
+  });
 };
 
 jasmine.SimpleReporter.prototype.log = function( str ) {};
