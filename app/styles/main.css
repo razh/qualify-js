@@ -35,3 +35,20 @@
   bottom: 20px;
   right: 20px;
   width: 50%; }
+
+.alert-enter,
+.alert-leave {
+  -webkit-transition: 0.2s ease-in-out all;
+  -khtml-transition: 0.2s ease-in-out all;
+  -moz-transition: 0.2s ease-in-out all;
+  -ms-transition: 0.2s ease-in-out all;
+  -o-transition: 0.2s ease-in-out all;
+  transition: 0.2s ease-in-out all; }
+
+.alert-enter,
+.alert-leave.alert-leave-active {
+  opacity: 0; }
+
+.alert-enter.alert-enter-active,
+.alert-leave {
+  opacity: 1; }

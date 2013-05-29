@@ -1,6 +1,15 @@
 /* Will be compiled down to a single stylesheet with your sass files */
 $spacing: 20px;
 
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+   -khtml-transition: $transition;
+     -moz-transition: $transition;
+      -ms-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
+
 .ace_editor {
   top: 0;
   bottom: 0;
@@ -46,4 +55,19 @@ $spacing: 20px;
   bottom: $spacing;
   right: $spacing;
   width: 50%;
+}
+
+.alert-enter,
+.alert-leave {
+  @include transition(0.2s ease-in-out all);
+}
+
+.alert-enter,
+.alert-leave.alert-leave-active {
+  opacity: 0;
+}
+
+.alert-enter.alert-enter-active,
+.alert-leave {
+  opacity: 1;
 }
