@@ -66,26 +66,58 @@ angular.module( 'qualifyJsApp' )
 
     var jasmineEnv = jasmine.getEnv();
 
-    jasmineEnv.updateInterval = 1000;
+    jasmineEnv.updateInterval = 250;
     jasmineEnv.addReporter( reporter );
 
     $scope.suites = [{specs: [{name: 'hello'}]}, {specs: [{name: 'goodbye'}]}];
 
     var number = 2;
     var nullObject = null;
+    var firstSuite = 'describe( \'Test\', function() {' +
+      'it( \'should add two numbers correctly\', function() {' +
+        'console.log(\'first\');' +
+        'expect( number + number ).toBe( 2 * number );' +
+      '});' +
+      'it( \'should have an object with a value of null\', function() {' +
+        'console.log(\'second\');' +
+        'expect( nullObject ).toBeNull();' +
+      '});' +
+    '});';
+
+    var secondSuite = 'describe( \'Test2\', function() {' +
+      'it( \'should do something\', function() {' +
+        'console.log(\'third\');' +
+        'expect( \'test\' ).toBe( \'test\' );' +
+      '});' +
+    '});';
+
+    function resetJasmineRunner( runner ) {
+      runner.queue.blocks = [];
+      runner.queue.ensured = [];
+      runner.queue.index = 0;
+
+      runner.suites_ = [];
+    }
+
+    var index = 0;
     $scope.testCode = function() {
-      describe( 'Test', function() {
-        it( 'should add two numbers correctly', function() {
-          console.log('first');
-          expect( number + number ).toBe( 2 * number );
-        });
+      console.log( '\n%cRun:', 'font-weight: bold;' );
+      resetJasmineRunner( jasmineEnv.currentRunner() );
+      var suites = jasmineEnv.currentRunner().suites();
+      console.log( jasmineEnv.currentRunner() );
 
-        it( 'should have an object with a value of null', function() {
-          console.log('second');
+      console.log( 'suites:' );
+      console.log( suites );
 
-          expect( nullObject ).toBeNull();
-        });
-      });
+      console.log( ( ( index % 2 ) === 0 ) ? firstSuite : secondSuite );
+      eval( ( ( index % 2 ) === 0 ) ? firstSuite : secondSuite );
+      console.log( '%cindex: ' + index, 'font-weight: bold;' );
+      index++;
+
+      console.log( jasmineEnv.currentRunner().suites() );
+
+      console.log( '%cPost:', 'font-weight: bold;' );
+      console.log( jasmineEnv.currentRunner() );
 
       jasmineEnv.execute();
 
