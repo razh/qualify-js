@@ -23,6 +23,7 @@
   float: left;
   background-color: #80c090;
   border-radius: 10px;
+  font-size: 8pt;
   padding: 10px; }
   .jasmine:before {
     content: "Jasmine";

@@ -44,7 +44,7 @@ angular.module( 'qualifyJsApp' )
       '    publicProperty: null,\n' +
       '    publicMethod: function() {\n' +
       '      // Private properties and methods can be accessed from here.\n' +
-      '      console.log( privateProperty );\n' +
+      '      console.log(privateProperty);\n' +
       '    }\n' +
       '  };\n' +
       '}) ();';
@@ -57,22 +57,41 @@ angular.module( 'qualifyJsApp' )
       console.log( Object.keys( eval( $scope.code ) ) );
     };
 
-
-    var reporter = new jasmine.SimpleReporter();
-
     // Test definition code.
-    var jasmineEnv = jasmine.getEnv();
-    jasmineEnv.updateInterval = 1000;
-
-    describe( 'Test', function() {
-      it( 'should add two numbers correctly', function() {
-        expect( 2 + 2 ).toBe(4);
-      });
+    var reporter = new jasmine.SimpleReporter();
+    reporter.onRunnerFinished(function( output ) {
+      $scope.output = output;
+      $scope.$apply();
     });
+
+    var jasmineEnv = jasmine.getEnv();
+
+    jasmineEnv.updateInterval = 1000;
+    jasmineEnv.addReporter( reporter );
 
     $scope.suites = [{specs: [{name: 'hello'}]}, {specs: [{name: 'goodbye'}]}];
 
+    var number = 2;
+    var nullObject = null;
     $scope.testCode = function() {
+      describe( 'Test', function() {
+        it( 'should add two numbers correctly', function() {
+          console.log('first');
+          expect( number + number ).toBe( 2 * number );
+        });
+
+        it( 'should have an object with a value of null', function() {
+          console.log('second');
+
+          expect( nullObject ).toBeNull();
+        });
+      });
+
       jasmineEnv.execute();
+
+      setTimeout(function() {
+        number++;
+        nullObject = {};
+      }, jasmine.updateInterval );
     };
   }]);
