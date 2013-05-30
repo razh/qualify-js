@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module( 'qualifyJsApp' )
-  .controller( 'MainCtrl', [ '$scope', '$document', function( $scope, $document ) {
+  .controller( 'MainCtrl', [ '$scope', '$document', '$timeout', function( $scope, $document, $timeout ) {
     $scope.themes = [
       'ambiance',
       'chrome',
@@ -117,12 +117,11 @@ angular.module( 'qualifyJsApp' )
 
       jasmineEnv.execute();
 
-      setTimeout(function() {
+      $timeout(function() {
         number++;
         nullObject = {};
 
         $scope.testingDisabled = false;
-        $scope.$apply();
       }, jasmineEnv.updateInterval );
     };
 

@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module( 'qualifyJsApp' )
-  .directive( 'editor', [ '$window', 'consts', function( $window, consts ) {
+  .directive( 'editor', [ '$window', '$timeout', 'consts', function( $window, $timeout, consts ) {
     var navbarHeight = 40;
     return {
       restrict: 'A',
       link: function postLink( scope, element, attrs ) {
         // Configure editor.
-        setTimeout(function() {
+        $timeout(function() {
           var editor = scope.editor.getSession();
 
           editor.setTabSize(2);
