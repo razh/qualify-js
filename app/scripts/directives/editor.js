@@ -16,7 +16,7 @@ angular.module( 'qualifyJsApp' )
           fitToWindow();
         }, 16 );
 
-        scope.$watch( 'currentTheme', function( newValue, oldValue ) {
+        scope.$watch( 'selected.theme', function( newValue, oldValue ) {
           scope.editor.setTheme( 'ace/theme/' + newValue );
         });
 

@@ -1,17 +1,17 @@
 <div ng-hide="error">
+
   <div editor ui-ace="{
     mode: 'javascript'
   }" scope-instance="editor" ng-model="code"></div>
-  <div class="options-panel">
-    <div class="themes-panel">
-      <p>Themes</p>
-      <select ng-model="currentTheme" ng-options="theme for theme in themes"></select>
-    </div>
-    <button class="btn btn-small" ng-click="evalCode()">Eval</button>
-    <button class="btn btn-small" ng-click="testCode()" ng-disabled="testingDisabled">Test</button>
+
+  <div class="command-panel">
+    <div ng-include src=" 'views/settings.html' "></div>
+    <button class="btn" ng-click="evalCode()">Eval</button>
+    <button class="btn btn-primary" ng-click="testCode()" ng-disabled="testingDisabled">Test</button>
 
     <div ng-include src=" 'views/contents.html' "></div>
   </div>
   <div ng-include src=" 'views/alerts.html' "></div>
 </div>
+
 <div ng-show="error"><h1>Error: {{ errorMessage }}</h1></div>

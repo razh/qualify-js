@@ -1,6 +1,6 @@
 /* Will be compiled down to a single stylesheet with your sass files */
 $padding: 20px;
-$width: 250px;
+$width: 265px;
 
 @mixin transition($transition) {
   -webkit-transition: $transition;
@@ -24,23 +24,14 @@ $width: 250px;
   height: 100%;
 }
 
-.options-panel {
+.command-panel {
   float: left;
   padding: $padding;
 }
 
 .contents {
+  margin-top: $padding;
   width: $width - 2 * $padding;
-
-  pre {
-    margin-top: 10px;
-
-    height: 0.5 * $width;
-    overflow: auto;
-
-    font-size: 8pt;
-    line-height: 12pt;
-  }
 }
 
 .alerts {

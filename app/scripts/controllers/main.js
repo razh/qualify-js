@@ -9,10 +9,12 @@ angular.module( 'qualifyJsApp' )
       function( $scope, $document, $http, $timeout ) {
 
     $scope.themes = [];
-    $scope.currentTheme = 'monokai';
 
     $scope.code = '';
-    $scope.selected = { problem: {} };
+    $scope.selected = {
+      problem: {},
+      theme: 'monokai'
+    };
 
     function showError( message ) {
       $scope.error = true;
@@ -68,6 +70,10 @@ angular.module( 'qualifyJsApp' )
     };
 
     $scope.testCode = function() {
+      if ( !$scope.selected.problem ) {
+        return;
+      }
+
       $scope.evalCode();
 
       // Disable button to stop clicks during the updateInterval.

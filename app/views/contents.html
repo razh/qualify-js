@@ -1,8 +1,10 @@
 <div class="contents">
-  <pre>Model: {{ selected.problem | json }}</pre>
-
-  <input type="text" ng-model="selected.problem" typeahead="problem as problem.id for problem in problems | filter: $viewValue"/>
+  <input type="text" placeholder="Search..." ng-model="selected.problem" typeahead="problem as problem.id for problem in problems | filter: $viewValue"/>
 
   <select ng-model="selected.problem" ng-options="problem as problem.id group by problem.group for problem in problems">
   </select>
+
+  <h3>{{ selected.problem.id }}</h3>
+
+  <p>{{ selected.problem.description }}</p>
 </div>
