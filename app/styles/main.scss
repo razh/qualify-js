@@ -1,5 +1,5 @@
 /* Will be compiled down to a single stylesheet with your sass files */
-$spacing: 20px;
+$padding: 20px;
 $width: 250px;
 
 @mixin transition($transition) {
@@ -26,16 +26,15 @@ $width: 250px;
 
 .options-panel {
   float: left;
-  padding: $spacing;
+  padding: $padding;
 }
 
 .contents {
-  width: $width;
+  width: $width - 2 * $padding;
 
   pre {
     margin-top: 10px;
 
-    width: 80%;
     height: 0.4 * $width;
     overflow: auto;
 
@@ -44,30 +43,11 @@ $width: 250px;
   }
 }
 
-.jasmine {
-  float: left;
-  background-color: rgba( 128, 192, 144, 1.0 );
-  border-radius: 10px;
-
-  font-size: 8pt;
-  line-height: 12pt;
-
-  padding: 10px;
-
-  width: 80%;
-  height: 50%;
-
-  &:before {
-    content: "Jasmine";
-    font-weight: bold;
-  }
-}
-
 .alerts {
   position: absolute;
   z-index: 4;
-  bottom: $spacing;
-  right: $spacing;
+  bottom: $padding;
+  right: $padding;
   width: 50%;
 }
 

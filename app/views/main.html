@@ -6,9 +6,11 @@
     <p>Themes</p>
     <select ng-model="currentTheme" ng-options="theme for theme in themes"></select>
   </div>
-  <button class="btn" ng-click="logCode()">Log</button>
-  <button class="btn" ng-click="evalCode()">Eval</button>
-  <button class="btn" ng-click="testCode()" ng-disabled="testingDisabled">Test</button>
+  <button class="btn btn-small" ng-click="logCode()">Log</button>
+  <button class="btn btn-small" ng-click="evalCode()">Eval</button>
+  <button class="btn btn-small" ng-click="testCode()" ng-disabled="testingDisabled">Test</button>
+  <button class="btn btn-small" ng-click="height()">Height</button>
+
   <div ng-include src=" 'views/contents.html' "></div>
 </div>
 <div ng-include src=" 'views/alerts.html' "></div>

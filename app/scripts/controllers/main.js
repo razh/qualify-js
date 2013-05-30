@@ -58,6 +58,7 @@ angular.module( 'qualifyJsApp' )
     };
 
     // Test definition code.
+    $scope.alerts = [];
     var reporter = new jasmine.SimpleReporter();
     reporter.onRunnerFinished(function( output ) {
       $scope.output = output;
@@ -125,17 +126,6 @@ angular.module( 'qualifyJsApp' )
       }, jasmineEnv.updateInterval );
     };
 
-    $scope.alerts = [
-      {
-        'type': 'error',
-        'message': 'try harder next time'
-      },
-      {
-        'type': 'success',
-        'message': 'work it do it makes it better'
-      }
-    ];
-
     $document.bind( 'keyup', function( event ) {
       // Escape.
       if ( event.which === 27 ) {
@@ -156,4 +146,8 @@ angular.module( 'qualifyJsApp' )
     };
 
     $scope.showingAlerts = true;
+
+    $scope.height = function() {
+      console.log( $document[0].documentElement.scrollHeight );
+    };
   }]);

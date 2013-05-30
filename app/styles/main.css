@@ -15,27 +15,13 @@
   padding: 20px; }
 
 .contents {
-  width: 250px; }
+  width: 210px; }
   .contents pre {
     margin-top: 10px;
-    width: 80%;
     height: 100px;
     overflow: auto;
     font-size: 8pt;
     line-height: 12pt; }
-
-.jasmine {
-  float: left;
-  background-color: #80c090;
-  border-radius: 10px;
-  font-size: 8pt;
-  line-height: 12pt;
-  padding: 10px;
-  width: 80%;
-  height: 50%; }
-  .jasmine:before {
-    content: "Jasmine";
-    font-weight: bold; }
 
 .alerts {
   position: absolute;
