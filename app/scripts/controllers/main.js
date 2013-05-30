@@ -1,7 +1,13 @@
 'use strict';
 
 angular.module( 'qualifyJsApp' )
-  .controller( 'MainCtrl', [ '$scope', '$document', '$timeout', function( $scope, $document, $timeout ) {
+  .controller( 'MainCtrl',
+    [ '$scope',
+      '$document',
+      '$http',
+      '$timeout',
+      function( $scope, $document, $http, $timeout ) {
+
     $scope.themes = [
       'ambiance',
       'chrome',
@@ -53,50 +59,32 @@ angular.module( 'qualifyJsApp' )
       console.log( $scope.code );
     };
 
+    // Get problems.
+    $http.get( './json/problems.json' ).then( function( response ) {
+      $scope.problems = response.data;
+      $scope.selected = $scope.problems[0];
+    }, function( reason ) {
+      $scope.error = true;
+      $scope.errorMessage = reason.status;
+    });
+
+    var results;
     $scope.evalCode = function() {
-      console.log( Object.keys( eval( $scope.code ) ) );
+      results = eval( $scope.code );
+      console.log( Object.keys( results ) );
     };
 
     // Test definition code.
     $scope.alerts = [];
     var reporter = new jasmine.SimpleReporter();
+
     reporter.onRunnerFinished(function( output ) {
       $scope.output = output;
       $scope.alerts = $scope.alerts.concat( output );
     });
 
     var jasmineEnv = jasmine.getEnv();
-
-    jasmineEnv.updateInterval = 250;
     jasmineEnv.addReporter( reporter );
-
-    $scope.suites = [{specs: [{name: 'hello'}]}, {specs: [{name: 'goodbye'}]}];
-
-    var number = 2;
-    var nullObject = null;
-    var suites = [ 'describe( \'Test\', function() {' +
-      'it( \'should add two numbers correctly\', function() {' +
-        'console.log(\'first\');' +
-        'expect( number + number ).toBe( 2 * number );' +
-      '});' +
-      'it( \'should have an object with a value of null\', function() {' +
-        'console.log(\'second\');' +
-        'expect( nullObject ).toBeNull();' +
-      '});' +
-    '});',
-
-    'describe( \'Test2\', function() {' +
-      'it( \'should do something\', function() {' +
-        'console.log(\'third\');' +
-        'expect( \'test\' ).toBe( \'test\' );' +
-      '});' +
-    '});',
-
-    'describe( \'Test3\', function() {' +
-      'it( \'should make sense\', function() {' +
-        'expect( null ).toBe( null );' +
-      '});' +
-    '});' ];
 
     function resetJasmineRunner( runner ) {
       // We need to handle garbage collection.
@@ -105,22 +93,18 @@ angular.module( 'qualifyJsApp' )
       runner.suites_ = [];
     }
 
-    var index = 0;
     $scope.testingDisabled = false;
 
     $scope.testCode = function() {
       $scope.testingDisabled = true;
       resetJasmineRunner( jasmineEnv.currentRunner() );
 
-      eval( suites[ index % suites.length ] );
-      index++;
+      eval( $scope.selected.suite.join( '\n' ) );
 
       jasmineEnv.execute();
 
-      $timeout(function() {
-        number++;
-        nullObject = {};
 
+      $timeout(function() {
         $scope.testingDisabled = false;
       }, jasmineEnv.updateInterval );
     };
@@ -136,7 +120,6 @@ angular.module( 'qualifyJsApp' )
     $document.bind( 'keypress', function( event ) {
       if ( event.which === 13  && event.ctrlKey ) {
         event.preventDefault();
-        console.log( 'Ctrl+Enter' );
       }
     });
 
@@ -145,8 +128,4 @@ angular.module( 'qualifyJsApp' )
     };
 
     $scope.showingAlerts = true;
-
-    $scope.height = function() {
-      console.log( $document[0].documentElement.scrollHeight );
-    };
   }]);

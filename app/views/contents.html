@@ -1,4 +1,4 @@
-<div class="contents pull-left" ng-controller="ContentsCtrl">
+<div class="contents pull-left">
   <pre>Model: {{ selected | json }}</pre>
 
   <input type="text" ng-model="selected" typeahead="problem as problem.id for problem in problems | filter: $viewValue">

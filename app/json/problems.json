@@ -1,15 +1,15 @@
 [
   {
     "id": "Test 1",
-    "description": "Return a list of stuff.",
+    "description": "Return an adding function.",
     "group": "Beginner",
-    "suite": {
-      "before": "describe( 'Test', function() {",
-      "children": [
-        "it( 'should be doing something', function() { expect( 'test' ).toBe( 'test' ); });"
-      ]
-    },
-    "after": "});"
+    "suite": [
+      "describe( 'Simple addition', function() {",
+        "it( 'should be adding something', function() {",
+           "expect( results.call( this, 2, 2 ) ).toBe( 4 );",
+        "});",
+      "});"
+    ]
   },
   {
     "id": "Test 2",
