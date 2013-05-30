@@ -1,12 +1,10 @@
-<div ng-controller="ContentsCtrl">
-  <!-- <ul class="contents" ng-hide="cannotLoad">
-    <li ng-repeat="section in sections">{{ section.category }}
-      <ul>
-        <li ng-repeat="title in section.sections">{{ title.name }}</li>
-      </ul>
-    </li>
-  </ul> -->
-  <select class="contents" ng-hide="cannotLoad" ng-model="currentSection" ng-options="section.category for section in sections">
+<div class="contents pull-left" ng-controller="ContentsCtrl">
+  <pre>Model: {{ selected | json }}</pre>
+
+  <input type="text" ng-model="selected" typeahead="problem as problem.id for problem in problems | filter: $viewValue">
+
+  <select class="pull-left" ng-hide="cannotLoad" ng-model="selected" ng-options="problem.id group by problem.group for problem in problems">
   </select>
+
   <div ng-show="error">Error: {{ errorMessage }}</div>
 </div>

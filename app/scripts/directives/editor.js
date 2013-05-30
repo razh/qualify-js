@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module( 'qualifyJsApp' )
-  .directive( 'editor', [ '$window', function( $window ) {
+  .directive( 'editor', [ '$window', 'consts', function( $window, consts ) {
+    var navbarHeight = 40;
     return {
       restrict: 'A',
       link: function postLink( scope, element, attrs ) {
@@ -21,9 +22,9 @@ angular.module( 'qualifyJsApp' )
 
         function fitToWindow() {
           // Subtract options panel width and padding.
-          element.css( 'width', $window.innerWidth - 270 + 'px' );
+          element.css( 'width', $window.innerWidth - consts.drawerWidth + 'px' );
           // Subtract navbar.
-          element.css( 'height', $window.innerHeight - 40 + 'px' );
+          element.css( 'height', $window.innerHeight - navbarHeight + 'px' );
         }
 
         angular.element( $window ).bind( 'resize', function() {

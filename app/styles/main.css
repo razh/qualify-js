@@ -7,8 +7,7 @@
 
 .ace_editor_wrapper {
   position: relative;
-  margin-left: 270px;
-  width: 400px;
+  margin-left: 250px;
   height: 100%; }
 
 .options-panel {
@@ -16,15 +15,24 @@
   padding: 20px; }
 
 .contents {
-  float: left;
-  list-style-type: square; }
+  width: 250px; }
+  .contents pre {
+    margin-top: 10px;
+    width: 80%;
+    height: 100px;
+    overflow: auto;
+    font-size: 8pt;
+    line-height: 12pt; }
 
 .jasmine {
   float: left;
   background-color: #80c090;
   border-radius: 10px;
   font-size: 8pt;
-  padding: 10px; }
+  line-height: 12pt;
+  padding: 10px;
+  width: 80%;
+  height: 50%; }
   .jasmine:before {
     content: "Jasmine";
     font-weight: bold; }

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "Test 1",
+    "description": "Return a list of stuff.",
+    "group": "Beginner",
+    "suite": {
+      "before": "describe( 'Test', function() {",
+      "children": [
+        "it( 'should be doing something', function() { expect( 'test' ).toBe( 'test' ); });"
+      ]
+    },
+    "after": "});"
+  },
+  {
+    "id": "Test 2",
+    "group": "Beginner",
+    "description": "This is the second description."
+  },
+  {
+    "id": "Test 3",
+    "group": "Intermediate",
+    "description": "Nested in here."
+  },
+  {
+    "id": "Test 4",
+    "group": "Functional programming",
+    "description": "map/reduce"
+  },
+  {
+    "id": "Test 5",
+    "group": "jQuery",
+    "description": "Selectors."
+  }
+]

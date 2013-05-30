@@ -1,5 +1,6 @@
 /* Will be compiled down to a single stylesheet with your sass files */
 $spacing: 20px;
+$width: 250px;
 
 @mixin transition($transition) {
   -webkit-transition: $transition;
@@ -19,8 +20,7 @@ $spacing: 20px;
 
 .ace_editor_wrapper {
   position: relative;
-  margin-left: 270px;
-  width: 400px;
+  margin-left: $width;
   height: 100%;
 }
 
@@ -30,8 +30,18 @@ $spacing: 20px;
 }
 
 .contents {
-  float: left;
-  list-style-type: square;
+  width: $width;
+
+  pre {
+    margin-top: 10px;
+
+    width: 80%;
+    height: 0.4 * $width;
+    overflow: auto;
+
+    font-size: 8pt;
+    line-height: 12pt;
+  }
 }
 
 .jasmine {
@@ -40,8 +50,12 @@ $spacing: 20px;
   border-radius: 10px;
 
   font-size: 8pt;
+  line-height: 12pt;
 
   padding: 10px;
+
+  width: 80%;
+  height: 50%;
 
   &:before {
     content: "Jasmine";
