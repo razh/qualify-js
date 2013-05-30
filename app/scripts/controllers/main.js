@@ -12,6 +12,7 @@ angular.module( 'qualifyJsApp' )
     $scope.currentTheme = 'monokai';
 
     $scope.code = '';
+    $scope.selected = { problem: {} };
 
     function showError( message ) {
       $scope.error = true;
@@ -21,7 +22,6 @@ angular.module( 'qualifyJsApp' )
     // Get config.
     $http.get( './json/config.json' ).then( function( response ) {
       var data = response.data;
-
       $scope.themes = data.themes;
       $scope.code = data.code.join( '\n' );
     }, function( reason ) {
@@ -31,7 +31,7 @@ angular.module( 'qualifyJsApp' )
     // Get problems.
     $http.get( './json/problems.json' ).then( function( response ) {
       $scope.problems = response.data;
-      $scope.selected = $scope.problems[0];
+      $scope.selected.problem = $scope.problems[0];
     }, function( reason ) {
       showError( reason.status );
     });
@@ -75,7 +75,8 @@ angular.module( 'qualifyJsApp' )
       resetJasmineRunner( jasmineEnv.currentRunner() );
 
       // Load test suite.
-      eval( $scope.selected.suite.join( '\n' ) );
+      console.log($scope.selected.problem.suite.join( '\n' ));
+      eval( $scope.selected.problem.suite.join( '\n' ) );
 
       jasmineEnv.execute();
 
@@ -83,7 +84,6 @@ angular.module( 'qualifyJsApp' )
         $scope.testingDisabled = false;
       }, jasmineEnv.updateInterval );
     };
-
 
     // Alerts.
     $scope.alerts = [];

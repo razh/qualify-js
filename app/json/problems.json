@@ -4,17 +4,17 @@
     "description": "Return a default object.",
     "group": "Beginner",
     "suite": [
-      "describe( 'Initial test.', function() {",
-        "it( 'should have two public objects', function() {",
-           "expect( Object.keys( results ).length ).toBe(2);",
+      "describe('Initial test.', function() {",
+        "it('should have two public objects', function() {",
+          "expect(Object.keys(results).length).toEqual(2);",
         "});",
 
-        "it( 'should have a publicProperty property that is null', function() {",
-           "expect( results.publicProperty ).toBeNull();",
+        "it('should have a publicProperty property that is null', function() {",
+          "expect(results.publicProperty).toBeNull();",
         "});",
 
-        "it( 'should have a publicMethod function that returns null', function() {",
-           "expect( results.publicMethod.call( this ) ).toBeNull();",
+        "it('should have a publicMethod function that returns null', function() {",
+          "expect(results.publicMethod.call(this)).toBeNull();",
         "});",
       "});"
     ]
@@ -22,7 +22,14 @@
   {
     "id": "Test 2",
     "group": "Beginner",
-    "description": "This is the second description."
+    "description": "This is the second description.",
+    "suite": [
+      "describe( 'Second test.', function() {",
+        "it( 'should have at least two public objects', function() {",
+           "expect( Object.keys( results ).length ).toEqual(2);",
+        "});",
+      "});"
+    ]
   },
   {
     "id": "Test 3",
