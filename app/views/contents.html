@@ -5,6 +5,4 @@
 
   <select class="pull-left" ng-hide="cannotLoad" ng-model="selected" ng-options="problem.id group by problem.group for problem in problems">
   </select>
-
-  <div ng-show="error">Error: {{ errorMessage }}</div>
 </div>

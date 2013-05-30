@@ -4,9 +4,17 @@
     "description": "Return an adding function.",
     "group": "Beginner",
     "suite": [
-      "describe( 'Simple addition', function() {",
-        "it( 'should be adding something', function() {",
-           "expect( results.call( this, 2, 2 ) ).toBe( 4 );",
+      "describe( 'Initial test.', function() {",
+        "it( 'should have two public objects', function() {",
+           "expect( Object.keys( results ).length ).toBe(2);",
+        "});",
+
+        "it( 'should have a publicProperty property that is null', function() {",
+           "expect( results.publicProperty ).toBeNull();",
+        "});",
+
+        "it( 'should have a publicMethod function that returns null', function() {",
+           "expect( results.publicMethod.call( this ) ).toBeNull();",
         "});",
       "});"
     ]

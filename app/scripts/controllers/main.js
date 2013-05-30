@@ -8,65 +8,37 @@ angular.module( 'qualifyJsApp' )
       '$timeout',
       function( $scope, $document, $http, $timeout ) {
 
-    $scope.themes = [
-      'ambiance',
-      'chrome',
-      'clouds',
-      'clouds_midnight',
-      'cobalt',
-      'crimson_editor',
-      'dawn',
-      'dreamweaver',
-      'eclipse',
-      'github',
-      'idle_fingers',
-      'merbivore',
-      'merbivore_soft',
-      'mono_industrial',
-      'monokai',
-      'pastel_on_dark',
-      'solarized_dark',
-      'solarized_light',
-      'textmate',
-      'tomorrow',
-      'tomorrow_night',
-      'tomorrow_night_blue',
-      'tomorrow_night_bright',
-      'tomorrow_night_eighties',
-      'twilight',
-      'vibrant_ink',
-      'xcode'
-    ];
-
+    $scope.themes = [];
     $scope.currentTheme = 'monokai';
 
-    $scope.code =
-      '(function() {\n' +
-      '  // These won\'t be seen by the test suite.\n' +
-      '  var privateProperty = null;\n' +
-      '  function privateMethod() { /* ... */ }\n' +
-      '  return {\n' +
-      '    // But it can see these.\n' +
-      '    publicProperty: null,\n' +
-      '    publicMethod: function() {\n' +
-      '      // Private properties and methods can be accessed from here.\n' +
-      '      console.log(privateProperty);\n' +
-      '    }\n' +
-      '  };\n' +
-      '}) ();';
+    $scope.code = '';
 
-    $scope.logCode = function() {
-      console.log( $scope.code );
-    };
+    function showError( message ) {
+      $scope.error = true;
+      $scope.errorMessage = message;
+    }
+
+    // Get config.
+    $http.get( './json/config.json' ).then( function( response ) {
+      var data = response.data;
+
+      $scope.themes = data.themes;
+      $scope.code = data.code.join( '\n' );
+    }, function( reason ) {
+      showError( reason.status );
+    });
 
     // Get problems.
     $http.get( './json/problems.json' ).then( function( response ) {
       $scope.problems = response.data;
       $scope.selected = $scope.problems[0];
     }, function( reason ) {
-      $scope.error = true;
-      $scope.errorMessage = reason.status;
+      showError( reason.status );
     });
+
+    $scope.logCode = function() {
+      console.log( $scope.code );
+    };
 
     var results;
     $scope.evalCode = function() {
@@ -102,7 +74,6 @@ angular.module( 'qualifyJsApp' )
       eval( $scope.selected.suite.join( '\n' ) );
 
       jasmineEnv.execute();
-
 
       $timeout(function() {
         $scope.testingDisabled = false;
