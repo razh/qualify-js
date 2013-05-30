@@ -36,27 +36,19 @@ angular.module( 'qualifyJsApp' )
       showError( reason.status );
     });
 
-    $scope.logCode = function() {
-      console.log( $scope.code );
-    };
-
-    var results;
-    $scope.evalCode = function() {
-      results = eval( $scope.code );
-      console.log( Object.keys( results ) );
-    };
-
-    // Test definition code.
-    $scope.alerts = [];
-    var reporter = new jasmine.SimpleReporter();
-
-    reporter.onRunnerFinished(function( output ) {
-      $scope.output = output;
-      $scope.alerts = $scope.alerts.concat( output );
-    });
-
     var jasmineEnv = jasmine.getEnv();
-    jasmineEnv.addReporter( reporter );
+
+    // Configure jasmine environment.
+    (function() {
+      // Test definition code.
+      var reporter = new jasmine.SimpleReporter();
+
+      reporter.onRunnerFinished(function( output ) {
+        $scope.alerts = $scope.alerts.concat( output );
+      });
+
+      jasmineEnv.addReporter( reporter );
+    }) ();
 
     function resetJasmineRunner( runner ) {
       // We need to handle garbage collection.
@@ -65,12 +57,24 @@ angular.module( 'qualifyJsApp' )
       runner.suites_ = [];
     }
 
+    // Testing code.
     $scope.testingDisabled = false;
 
+    // Results of evaluated code (to be called from testing suite).
+    var results;
+    $scope.evalCode = function() {
+      results = eval( $scope.code );
+      console.log( Object.keys( results ) );
+    };
+
     $scope.testCode = function() {
+      $scope.evalCode();
+
+      // Disable button to stop clicks during the updateInterval.
       $scope.testingDisabled = true;
       resetJasmineRunner( jasmineEnv.currentRunner() );
 
+      // Load test suite.
       eval( $scope.selected.suite.join( '\n' ) );
 
       jasmineEnv.execute();
@@ -80,23 +84,32 @@ angular.module( 'qualifyJsApp' )
       }, jasmineEnv.updateInterval );
     };
 
+
+    // Alerts.
+    $scope.alerts = [];
+
+    $scope.closeAlert = function( $index ) {
+      $scope.alerts.splice( $index, 1 );
+    };
+
+    $scope.clearAlerts = function() {
+      $scope.alerts = [];
+      $scope.$apply();
+    };
+
+
+    // Keyboard shortcuts.
     $document.bind( 'keyup', function( event ) {
       // Escape.
       if ( event.which === 27 ) {
-        $scope.alerts = [];
-        $scope.$apply();
+        $scope.clearAlerts();
       }
     });
 
     $document.bind( 'keypress', function( event ) {
       if ( event.which === 13  && event.ctrlKey ) {
         event.preventDefault();
+        $scope.testCode();
       }
     });
-
-    $scope.closeAlert = function( $index ) {
-      $scope.alerts.splice( $index, 1 );
-    };
-
-    $scope.showingAlerts = true;
   }]);
