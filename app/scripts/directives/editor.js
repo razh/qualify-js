@@ -22,8 +22,6 @@ angular.module( 'qualifyJsApp' )
 
         scope.$watch( 'config.fontSize', function( newValue ) {
           scope.editor.setFontSize( newValue + 'px' );
-          // 5:3 is the ratio of lineHeight:fontSize.
-          element.css( 'lineHeight', newValue * 5 / 3 + 'px' );
         });
 
         function fitToWindow() {
