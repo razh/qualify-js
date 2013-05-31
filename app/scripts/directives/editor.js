@@ -16,8 +16,14 @@ angular.module( 'qualifyJsApp' )
           fitToWindow();
         }, 16 );
 
-        scope.$watch( 'selected.theme', function( newValue, oldValue ) {
+        scope.$watch( 'config.theme', function( newValue ) {
           scope.editor.setTheme( 'ace/theme/' + newValue );
+        });
+
+        scope.$watch( 'config.fontSize', function( newValue ) {
+          scope.editor.setFontSize( newValue + 'px' );
+          // 5:3 is the ratio of lineHeight:fontSize.
+          element.css( 'lineHeight', newValue * 5 / 3 + 'px' );
         });
 
         function fitToWindow() {

@@ -1,6 +1,9 @@
 <div class="settings-panel">
   <p>Themes</p>
-  <select ng-model="selected.theme" ng-options="theme for theme in themes"></select>
+  <select ng-model="config.theme" ng-options="theme for theme in themes"></select>
+
+  <label>Font size:</label>
+  <input ng-model="config.fontSize" type="number" min="0"/>
 
   <div class="btn btn-primary" ng-click="toggleSettings()">Close</div>
 </div>

@@ -14,6 +14,11 @@ angular.module( 'qualifyJsApp' )
     $scope.code = '';
     $scope.selected = {
       problem: {},
+    };
+
+    // Editor configuration options.
+    $scope.config ={
+      fontSize: 12,
       theme: 'monokai'
     };
 
