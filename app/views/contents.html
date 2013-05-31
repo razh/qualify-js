@@ -4,7 +4,7 @@
   <select ng-model="selected.problem" ng-options="problem as problem.id group by problem.group for problem in problems">
   </select>
 
-  <h3>{{ selected.problem.id }}</h3>
+  <h4>{{ selected.problem.id }}</h4>
 
   <p>{{ selected.problem.description }}</p>
 </div>

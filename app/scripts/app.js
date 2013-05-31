@@ -8,6 +8,11 @@ angular.module( 'qualifyJsApp', [ 'ui.ace', 'ui.bootstrap' ] )
       problems: './json/problems.json'
     };
   }) ())
+  .filter( 'capitalize', function() {
+    return function( string ) {
+      return string.substring( 0, 1 ).toUpperCase() + string.substring(1);
+    };
+  })
   .config( [ '$routeProvider', function( $routeProvider ) {
     $routeProvider
       .when( '/', {

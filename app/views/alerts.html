@@ -1,3 +1,7 @@
 <div class="alerts">
-  <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)" ng-animate=" 'fade' ">{{ alert.message }}</alert>
+  <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)" ng-animate=" 'fade' ">
+      <strong>{{ alert.type | capitalize }}</strong>
+      <br/>
+      It {{ alert.message }}.
+  </alert>
 </div>

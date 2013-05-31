@@ -24,9 +24,9 @@
     "group": "Beginner",
     "description": "This is the second description.",
     "suite": [
-      "describe( 'Second test.', function() {",
-        "it( 'should have at least two public objects', function() {",
-           "expect( Object.keys( results ).length ).toEqual(2);",
+      "describe('Second test.', function() {",
+        "it('should have at least two public objects', function() {",
+          "expect(Object.keys(results).length).toEqual(2);",
         "});",
       "});"
     ]
@@ -34,7 +34,14 @@
   {
     "id": "Test 3",
     "group": "Intermediate",
-    "description": "Nested in here."
+    "description": "Nested in here.",
+    "suite": [
+      "describe('Third test.', function() {",
+        "it('should not have a nonexistent property (produces error)', function() {",
+          "expect(results.nonexistentProperty).toBeDefined();",
+        "});",
+      "});"
+    ]
   },
   {
     "id": "Test 4",

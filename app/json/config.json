@@ -30,7 +30,7 @@
   ],
   "code": [
     "(function() {",
-    "  // These won\"t be seen by the test suite.",
+    "  // These won't be seen by the test suite.",
     "  var privateProperty = null;",
     "  function privateMethod() { /* ... */ }",
     "  return {",
