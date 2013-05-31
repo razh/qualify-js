@@ -10,9 +10,20 @@
   margin-left: 265px;
   height: 100%; }
 
+.settings-panel {
+  position: absolute;
+  padding-top: 20px;
+  padding-left: 20px;
+  width: 225px;
+  top: 40px;
+  bottom: 0;
+  left: 0;
+  background: white; }
+
 .command-panel {
   float: left;
-  padding: 20px; }
+  padding: 20px;
+  background: white; }
 
 .contents {
   margin-top: 20px;
@@ -25,8 +36,8 @@
   right: 20px;
   width: 50%; }
 
-.alert-enter,
-.alert-leave {
+.fade-enter,
+.fade-leave {
   -webkit-transition: 0.2s ease-in-out all;
   -khtml-transition: 0.2s ease-in-out all;
   -moz-transition: 0.2s ease-in-out all;
@@ -34,10 +45,10 @@
   -o-transition: 0.2s ease-in-out all;
   transition: 0.2s ease-in-out all; }
 
-.alert-enter,
-.alert-leave.alert-leave-active {
+.fade-enter,
+.fade-leave.fade-leave-active {
   opacity: 0; }
 
-.alert-enter.alert-enter-active,
-.alert-leave {
+.fade-enter.fade-enter-active,
+.fade-leave {
   opacity: 1; }

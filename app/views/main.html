@@ -5,9 +5,11 @@
   }" scope-instance="editor" ng-model="code"></div>
 
   <div class="command-panel">
-    <div ng-include src=" 'views/settings.html' "></div>
+    <div ng-include src=" 'views/settings.html' " ng-show="isShowingSettings()"></div>
+
     <button class="btn" ng-click="evalCode()">Eval</button>
     <button class="btn btn-primary" ng-click="testCode()" ng-disabled="testingDisabled">Test</button>
+    <div class="btn btn-primary" ng-click="toggleSettings()">Settings</div>
 
     <div ng-include src=" 'views/contents.html' "></div>
   </div>

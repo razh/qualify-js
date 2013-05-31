@@ -3,7 +3,9 @@
 angular.module( 'qualifyJsApp', [ 'ui.ace', 'ui.bootstrap' ] )
   .constant( 'consts', (function() {
     return {
-      drawerWidth: 265
+      drawerWidth: 265,
+      config: './json/config.json',
+      problems: './json/problems.json'
     };
   }) ())
   .config( [ '$routeProvider', function( $routeProvider ) {

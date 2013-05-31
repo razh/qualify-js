@@ -6,7 +6,8 @@ angular.module( 'qualifyJsApp' )
       '$document',
       '$http',
       '$timeout',
-      function( $scope, $document, $http, $timeout ) {
+      'consts',
+      function( $scope, $document, $http, $timeout, consts ) {
 
     $scope.themes = [];
 
@@ -22,7 +23,7 @@ angular.module( 'qualifyJsApp' )
     }
 
     // Get config.
-    $http.get( './json/config.json' ).then( function( response ) {
+    $http.get( consts.config ).then( function( response ) {
       var data = response.data;
       $scope.themes = data.themes;
       $scope.code = data.code.join( '\n' );
@@ -31,7 +32,7 @@ angular.module( 'qualifyJsApp' )
     });
 
     // Get problems.
-    $http.get( './json/problems.json' ).then( function( response ) {
+    $http.get( consts.problems ).then( function( response ) {
       $scope.problems = response.data;
       $scope.selected.problem = $scope.problems[0];
     }, function( reason ) {
@@ -64,6 +65,7 @@ angular.module( 'qualifyJsApp' )
 
     // Results of evaluated code (to be called from testing suite).
     var results;
+
     $scope.evalCode = function() {
       results = eval( $scope.code );
       console.log( Object.keys( results ) );
@@ -91,6 +93,7 @@ angular.module( 'qualifyJsApp' )
       }, jasmineEnv.updateInterval );
     };
 
+
     // Alerts.
     $scope.alerts = [];
 
@@ -101,6 +104,18 @@ angular.module( 'qualifyJsApp' )
     $scope.clearAlerts = function() {
       $scope.alerts = [];
       $scope.$apply();
+    };
+
+
+    // Settings.
+    var showingSettings = false;
+
+    $scope.isShowingSettings = function() {
+      return showingSettings;
+    };
+
+    $scope.toggleSettings = function() {
+      showingSettings = !showingSettings;
     };
 
 
