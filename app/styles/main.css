@@ -20,6 +20,13 @@
   bottom: 0;
   left: 0;
   background: white; }
+  .settings-panel fieldset {
+    margin-bottom: 20px; }
+  .settings-panel .slider {
+    margin-left: 20px; }
+    .settings-panel .slider h1, .settings-panel .slider h2, .settings-panel .slider h3, .settings-panel .slider h4, .settings-panel .slider h5, .settings-panel .slider h6 {
+      display: inline-block;
+      vertical-align: middle; }
 
 .command-panel {
   float: left;

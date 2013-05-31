@@ -1,9 +1,22 @@
 <div class="settings-panel">
-  <label><strong>Themes:</strong></label>
-  <select ng-model="config.theme" ng-options="theme for theme in themes"></select>
+  <form>
+    <legend>Settings</legend>
 
-  <label><strong>Font size:</strong></label>
-  <input ng-model="config.fontSize" type="number" min="8" max="64"/>
+    <fieldset>
+      <label><strong>Themes:</strong></label>
+      <select ng-model="config.theme" ng-options="theme for theme in themes"></select>
+    </fieldset>
 
-  <div class="btn btn-primary" ng-click="toggleSettings()">Close</div>
+    <fieldset>
+      <label><strong>Font size:</strong> {{ config.fontSize }}</label>
+
+      <div class="slider">
+        <h6>A</h6>
+          <input class="input-medium" ng-model="config.fontSize" type="range" min="8" max="64"/>
+        <h4>A</h4>
+      </div>
+    </fieldset>
+
+    <div class="btn btn-primary" ng-click="toggleSettings()">Close</div>
+  </form>
 </div>

@@ -41,6 +41,19 @@ $navbar-height: 40px;
   left: 0;
 
   background: white;
+
+  fieldset {
+    margin-bottom: $padding;
+  }
+
+  .slider {
+    margin-left: $padding;
+
+    h1, h2, h3, h4, h5, h6 {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
 }
 
 .command-panel {

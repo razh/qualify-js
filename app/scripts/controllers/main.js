@@ -77,7 +77,7 @@ angular.module( 'qualifyJsApp' )
     };
 
     $scope.testCode = function() {
-      if ( !$scope.selected.problem ) {
+      if ( !$scope.selected.problem || !$scope.selected.problem.suite ) {
         return;
       }
 
