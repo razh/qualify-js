@@ -1,6 +1,6 @@
 [
   {
-    "id": "Test 1",
+    "id": "Initial test",
     "description": "Return a default object.",
     "group": "Beginner",
     "suite": [
@@ -20,13 +20,22 @@
     ]
   },
   {
-    "id": "Test 2",
+    "id": "Sum of all arguments",
     "group": "Beginner",
-    "description": "This is the second description.",
+    "description": "Return a function that returns the sum of its argument values.",
     "suite": [
-      "describe('Second test.', function() {",
-        "it('should have at least two public objects', function() {",
-          "expect(Object.keys(results).length).toEqual(2);",
+      "describe('Sum of all arguments.', function() {",
+        "var add = results; console.log(add)",
+
+        "it('should add two or more numbers', function() {",
+          "expect(add(7)).toEqual(7);",
+          "expect(add(5, 6)).toEqual(11);",
+          "expect(add(1, 2, 3)).toEqual(6);",
+          "expect(add(1, 2, 3, 4)).toEqual(10);",
+        "});",
+
+        "it('should ignore objects, arrays, and strings', function() {",
+          "expect(add({}, [], '', 5, 6)).toEqual(11);",
         "});",
       "});"
     ]
