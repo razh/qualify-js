@@ -6,15 +6,15 @@
     "suite": [
       "describe('Initial test.', function() {",
         "it('should have two public objects', function() {",
-          "expect(Object.keys(results).length).toEqual(2);",
+          "expect(Object.keys($results).length).toEqual(2);",
         "});",
 
         "it('should have a publicProperty property that is null', function() {",
-          "expect(results.publicProperty).toBeNull();",
+          "expect($results.publicProperty).toBeNull();",
         "});",
 
         "it('should have a publicMethod function that returns null', function() {",
-          "expect(results.publicMethod.call(this)).toBeNull();",
+          "expect($results.publicMethod.call(this)).toBeNull();",
         "});",
       "});"
     ]
@@ -25,7 +25,7 @@
     "description": "Return a function that returns the sum of its argument values.",
     "suite": [
       "describe('Sum of all arguments.', function() {",
-        "var add = results; console.log(add)",
+        "var add = $results;",
 
         "it('should add two or more numbers', function() {",
           "expect(add(7)).toEqual(7);",
@@ -47,7 +47,7 @@
     "suite": [
       "describe('Third test.', function() {",
         "it('should not have a nonexistent property (produces error)', function() {",
-          "expect(results.nonexistentProperty).toBeDefined();",
+          "expect($results.nonexistentProperty).toBeDefined();",
         "});",
       "});"
     ]

@@ -68,12 +68,15 @@ angular.module( 'qualifyJsApp' )
     // Testing code.
     $scope.testingDisabled = false;
 
+    // Code string. For use
+    var $code;
     // Results of evaluated code (to be called from testing suite).
-    var results;
+    var $results;
 
     $scope.evalCode = function() {
-      results = eval( $scope.code );
-      console.log( Object.keys( results ) );
+      $code = $scope.code;
+      $results = eval( $code );
+      console.log( Object.keys( $results ) );
     };
 
     $scope.testCode = function() {
