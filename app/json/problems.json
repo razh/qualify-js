@@ -1,7 +1,7 @@
 [
   {
     "id": "Initial test",
-    "description": "Return a default object.",
+    "description": "Return a *default* object.",
     "group": "Beginner",
     "suite": [
       "describe('Initial test.', function() {",

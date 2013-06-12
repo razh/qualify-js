@@ -25,9 +25,9 @@ angular.module( 'qualifyJsApp' )
        * @param {function} finishHandler
        */
       executeJasmine: function( finishHandler ) {
-        // Reset jasmine environment and attach logging function.
+        // Attach logging function.
         reporter.onRunnerFinished( finishHandler );
-        // Execute tests and reset.
+        // Execute tests and reset environment.
         jasmineEnv.execute();
         resetJasmineRunner( jasmineEnv.currentRunner() );
       }
