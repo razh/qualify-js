@@ -8,14 +8,28 @@ angular.module( 'qualifyJsApp' )
     var reporter = new jasmine.SimpleReporter();
     jasmineEnv.addReporter( reporter );
 
+    // We need to handle garbage collection.
+    // It appears to have been improved in Jasmine 2.0.
+    function resetJasmineRunner( runner ) {
+      runner.queue.index = 0;
+      runner.suites_ = [];
+    }
+
     return {
       env: jasmineEnv,
       reporter: reporter,
-      // We need to handle garbage collection.
-      // It appears to have been improved in Jasmine 2.0.
-      resetJasmineRunner: function( runner ) {
-        runner.queue.index = 0;
-        runner.suites_ = [];
+      resetJasmineRunner: resetJasmineRunner,
+
+      /**
+       * Run jasmine suite with finishHandler attached to reporter.
+       * @param {function} finishHandler
+       */
+      executeJasmine: function( finishHandler ) {
+        // Reset jasmine environment and attach logging function.
+        reporter.onRunnerFinished( finishHandler );
+        // Execute tests and reset.
+        jasmineEnv.execute();
+        resetJasmineRunner( jasmineEnv.currentRunner() );
       }
     };
   });

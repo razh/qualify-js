@@ -48,8 +48,7 @@ angular.module( 'qualifyJsApp' )
 
     // Load methods and vars from jasmine service.
     var jasmineEnv = jasmineService.env,
-        resetJasmineRunner = jasmineService.resetJasmineRunner,
-        reporter = jasmineService.reporter;
+        executeJasmine = jasmineService.executeJasmine;
 
     function finishHandler( output ) {
       $scope.alerts = $scope.alerts.concat( output );
@@ -79,15 +78,11 @@ angular.module( 'qualifyJsApp' )
       // Disable button to stop clicks during the updateInterval.
       $scope.testingDisabled = true;
 
-      // Reset jasmine environment and attach logging function.
-      reporter.onRunnerFinished( finishHandler );
-      resetJasmineRunner( jasmineEnv.currentRunner() );
-
       // Load test suite.
       console.log( $scope.selected.problem.suite.join( '\n' ) );
       eval( $scope.selected.problem.suite.join( '\n' ) );
 
-      jasmineEnv.execute();
+      executeJasmine( finishHandler );
 
       $timeout(function() {
         $scope.testingDisabled = false;

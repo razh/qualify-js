@@ -8,8 +8,7 @@ angular.module( 'qualifyJsApp' )
 
     // Load methods and vars from jasmine service.
     var jasmineEnv = jasmineService.env,
-        resetJasmineRunner = jasmineService.resetJasmineRunner,
-        reporter = jasmineService.reporter;
+        executeJasmine = jasmineService.executeJasmine;
 
     // Whenever the selected problem changes, update the specs view.
     $scope.$watch( 'selected.problem', function( newValue ) {
@@ -38,11 +37,6 @@ angular.module( 'qualifyJsApp' )
         $scope.suites.push( tempSuite );
       });
 
-      // Remove onRunnerFinished handler from reporter.
-      reporter.onRunnerFinished( null );
-      // Executing and then reseting the jasmine runner prevents duplicate alerts
-      // from popping up.
-      jasmineEnv.execute();
-      resetJasmineRunner( jasmineEnv.currentRunner() );
+      executeJasmine( null );
     });
   }]);
