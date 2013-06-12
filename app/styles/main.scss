@@ -1,5 +1,6 @@
 /* Will be compiled down to a single stylesheet with your sass files */
 $padding: 20px;
+$thin-padding: 0.5 * $padding;
 $width: 265px;
 $navbar-height: 40px;
 
@@ -74,6 +75,16 @@ $navbar-height: 40px;
   bottom: $padding;
   right: $padding;
   width: 50%;
+}
+
+.specs {
+  width: $width - 2 * $padding;
+  padding-top: $thin-padding;
+  font-size: 10pt;
+
+  td {
+    padding-top: $thin-padding;
+  }
 }
 
 // Animations.

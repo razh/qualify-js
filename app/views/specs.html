@@ -1,6 +1,8 @@
-<table class="specs" ng-controller="SpecsCtrl">
-  <tr ng-repeat="spec in specs">
-    <td>{{ spec.expected }}</td>
-    <td>{{ spec.actual }}</td>
-  </tr>
-</table>
+<div class="specs" ng-controller="SpecsCtrl">
+  <h4>Requirements</h4>
+  <table ng-repeat="suite in suites">
+    <tr ng-repeat="spec in suite">
+      <td>It {{ spec }}.</td>
+    </tr>
+  </table>
+</div>
