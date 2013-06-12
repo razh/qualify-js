@@ -22,6 +22,7 @@ angular.module( 'qualifyJsApp' )
       theme: 'monokai'
     };
 
+
     function showError( message ) {
       $scope.error = true;
       $scope.errorMessage = message;
@@ -68,9 +69,10 @@ angular.module( 'qualifyJsApp' )
     // Testing code.
     $scope.testingDisabled = false;
 
-    // Code string. For use
+    // Variables accessible from testing suite.
+    // Code string.
     var $code;
-    // Results of evaluated code (to be called from testing suite).
+    // Results of evaluated code.
     var $results;
 
     $scope.evalCode = function() {
@@ -91,7 +93,7 @@ angular.module( 'qualifyJsApp' )
       resetJasmineRunner( jasmineEnv.currentRunner() );
 
       // Load test suite.
-      console.log($scope.selected.problem.suite.join( '\n' ));
+      console.log( $scope.selected.problem.suite.join( '\n' ) );
       eval( $scope.selected.problem.suite.join( '\n' ) );
 
       jasmineEnv.execute();
