@@ -7,7 +7,8 @@ angular.module( 'qualifyJsApp' )
       '$http',
       '$timeout',
       'consts',
-      function( $scope, $document, $http, $timeout, consts ) {
+      'jasmineService',
+      function( $scope, $document, $http, $timeout, consts, jasmineService ) {
 
     $scope.themes = [];
 
@@ -45,25 +46,13 @@ angular.module( 'qualifyJsApp' )
       showError( reason.status );
     });
 
-    var jasmineEnv = jasmine.getEnv();
+    // Load methods and vars from jasmine service.
+    var jasmineEnv = jasmineService.env,
+        resetJasmineRunner = jasmineService.resetJasmineRunner,
+        reporter = jasmineService.reporter;
 
-    // Configure jasmine environment.
-    (function() {
-      // Test definition code.
-      var reporter = new jasmine.SimpleReporter();
-
-      reporter.onRunnerFinished(function( output ) {
-        $scope.alerts = $scope.alerts.concat( output );
-      });
-
-      jasmineEnv.addReporter( reporter );
-    }) ();
-
-    function resetJasmineRunner( runner ) {
-      // We need to handle garbage collection.
-      // It appears to have been improved in Jasmine 2.0.
-      runner.queue.index = 0;
-      runner.suites_ = [];
+    function finishHandler( output ) {
+      $scope.alerts = $scope.alerts.concat( output );
     }
 
     // Testing code.
@@ -87,9 +76,11 @@ angular.module( 'qualifyJsApp' )
       }
 
       $scope.evalCode();
-
       // Disable button to stop clicks during the updateInterval.
       $scope.testingDisabled = true;
+
+      // Reset jasmine environment and attach logging function.
+      reporter.onRunnerFinished( finishHandler );
       resetJasmineRunner( jasmineEnv.currentRunner() );
 
       // Load test suite.
