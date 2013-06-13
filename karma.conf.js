@@ -7,12 +7,17 @@ basePath = '';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  'app/components/angular/angular.js',
+  'app/components/angular-unstable/angular.js',
   'app/components/angular-mocks/angular-mocks.js',
   'app/scripts/*.js',
   'app/scripts/**/*.js',
   'test/mock/**/*.js',
-  'test/spec/**/*.js'
+  'test/spec/**/*.js',
+
+  // ui.ace and ui.bootstrap.
+  'app/components/ace-builds/src-min-noconflict/ace.js',
+  'app/components/angular-ui-ace/ui-ace.js',
+  'app/components/angular-bootstrap/ui-bootstrap-tpls.min.js'
 ];
 
 // list of files to exclude

@@ -66,7 +66,7 @@ angular.module( 'qualifyJsApp' )
     $scope.evalCode = function() {
       $code = $scope.code;
       $results = eval( $code );
-      console.log( Object.keys( $results ) );
+      return $results;
     };
 
     $scope.testCode = function() {

@@ -12,6 +12,8 @@ angular.module( 'qualifyJsApp' )
 
     // Whenever the selected problem changes, update the specs view.
     $scope.$watch( 'selected.problem', function( newValue ) {
+      // Reset specs array.
+      $scope.suites = [];
       if ( !newValue.suite ) {
         return;
       }
@@ -24,8 +26,6 @@ angular.module( 'qualifyJsApp' )
       var suites = jasmineEnv.currentRunner().suites();
       var specs, tempSuite;
 
-      // Reset specs array.
-      $scope.suites = [];
       suites.forEach( function( suite ) {
         tempSuite = [];
 

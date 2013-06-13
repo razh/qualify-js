@@ -29,6 +29,9 @@ jasmine.SimpleReporter.prototype.reportSpecStarting = function( spec ) {};
 
 jasmine.SimpleReporter.prototype.reportSpecResults = function( spec ) {
   var result = spec.results();
+  if ( !result ) {
+    return;
+  }
 
   this.output.push({
     type: result.passed() ? 'success' : 'error',

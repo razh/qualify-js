@@ -15,7 +15,19 @@ describe( 'Controller: MainCtrl', function() {
     });
   }));
 
-  it( 'should attach a list of awesomeThings to the scope', function() {
-    expect( scope.awesomeThings.length ).toBe(3);
+  it( 'should eval ace editor code content', function() {
+    scope.code =
+      '(function() {\n' +
+      '  return {\n' +
+      '    publicProperty: 7,\n' +
+      '    publicMethod: function() {\n' +
+      '      return 5;\n' +
+      '    }\n' +
+      '  };\n' +
+      '}) ();';
+
+    var $results = scope.evalCode();
+    expect( $results.publicProperty ).toBe(7);
+    expect( $results.publicMethod() ).toBe(5);
   });
 });

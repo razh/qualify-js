@@ -1,5 +1,6 @@
 <div class="specs" ng-controller="SpecsCtrl">
   <h4>Requirements</h4>
+  <div ng-hide="suites.length">No requirements defined.</div>
   <table ng-repeat="suite in suites">
     <tr ng-repeat="spec in suite">
       <td>It {{ spec }}.</td>
