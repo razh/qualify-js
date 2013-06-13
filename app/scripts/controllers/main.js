@@ -8,7 +8,7 @@ angular.module( 'qualifyJsApp' )
       '$timeout',
       'consts',
       'jasmineService',
-      function( $scope, $document, $http, $timeout, consts, jasmineService ) {
+    function( $scope, $document, $http, $timeout, consts, jasmineService ) {
 
     $scope.themes = [];
 

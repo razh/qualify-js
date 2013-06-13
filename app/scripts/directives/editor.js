@@ -1,8 +1,14 @@
 'use strict';
 
 angular.module( 'qualifyJsApp' )
-  .directive( 'editor', [ '$window', '$timeout', 'consts', function( $window, $timeout, consts ) {
+  .directive( 'editor',
+    [ '$window',
+      '$timeout',
+      'consts',
+    function( $window, $timeout, consts ) {
+
     var navbarHeight = 40;
+
     return {
       restrict: 'A',
       link: function postLink( scope, element, attrs ) {
